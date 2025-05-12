@@ -1,11 +1,1 @@
 # zjw-website
-<!DOCTYPE html>
-<html>
-<head>
-    <title>zrl的高光时刻</title>
-</head>
-<body>
-    <h1>zrl is what</h1>
-    <p>傻眼了吧,就这样让你。。。</p>
-</body>
-</html>
