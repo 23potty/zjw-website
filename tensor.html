@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张量知识 | 从基础到深度学习</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0FC6C2',
+                        dark: '#1D2939',
+                        light: '#F9FAFB',
+                        neutral: '#667085',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .transition-custom {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .card-hover {
+                @apply hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+            }
+            .formula-container {
+                @apply bg-white rounded-lg p-4 shadow-md my-4 overflow-x-auto;
+            }
+            .tensor-animation {
+                @apply relative w-full h-64 bg-dark/5 rounded-lg overflow-hidden;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- 导航栏 -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="text-primary text-3xl">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-primary">张量知识</h1>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="font-medium text-primary hover:text-primary/80 transition-custom">首页</a>
+                <a href="#concepts" class="font-medium text-dark hover:text-primary transition-custom">基本概念</a>
+                <a href="#operations" class="font-medium text-dark hover:text-primary transition-custom">张量运算</a>
+                <a href="#applications" class="font-medium text-dark hover:text-primary transition-custom">应用领域</a>
+                <a href="#examples" class="font-medium text-dark hover:text-primary transition-custom">代码示例</a>
+                <a href="#resources" class="font-medium text-dark hover:text-primary transition-custom">学习资源</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-dark hover:text-primary" id="menu-toggle">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden hidden bg-white shadow-lg absolute w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="py-2 px-4 hover:bg-gray-50 rounded-md text-primary font-medium">首页</a>
+                <a href="#concepts" class="py-2 px-4 hover:bg-gray-50 rounded-md text-dark font-medium">基本概念</a>
+                <a href="#operations" class="py-2 px-4 hover:bg-gray-50 rounded-md text-dark font-medium">张量运算</a>
+                <a href="#applications" class="py-2 px-4 hover:bg-gray-50 rounded-md text-dark font-medium">应用领域</a>
+                <a href="#examples" class="py-2 px-4 hover:bg-gray-50 rounded-md text-dark font-medium">代码示例</a>
+                <a href="#resources" class="py-2 px-4 hover:bg-gray-50 rounded-md text-dark font-medium">学习资源</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <!-- 英雄区 -->
+        <section id="home" class="mb-20">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-dark">
+                        探索<span class="text-primary">张量</span>的奥秘
+                    </h2>
+                    <p class="text-lg text-neutral max-w-xl">
+                        从物理学中的张量到深度学习中的多维数组，全面掌握张量的数学基础、运算规则和实际应用。
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#concepts" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg shadow-md transition-custom flex items-center">
+                            <span>开始学习</span>
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#examples" class="bg-white hover:bg-gray-50 text-primary border border-primary px-6 py-3 rounded-lg shadow-sm transition-custom flex items-center">
+                            <span>查看代码示例</span>
+                            <i class="fa-solid fa-code ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-2xl shadow-xl p-6 transform rotate-1 hover:rotate-0 transition-all duration-500">
+                        <div class="tensor-animation" id="tensorAnimation">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="relative w-32 h-32">
+                                    <!-- 3D张量动画 -->
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="w-24 h-24 bg-primary/20 border border-primary rounded-lg transform rotate-x-12 rotate-y-12">
+                                            <div class="absolute inset-2 bg-primary/10 border border-primary rounded-lg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary font-bold text-xl">
+                                        3D
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-xs text-neutral">
+                                张量维度可视化
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-primary/10 rounded-full blur-2xl"></div>
+                    <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 基本概念 -->
+        <section id="concepts" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark">基本概念</h2>
+                <p class="text-neutral mt-4 max-w-2xl mx-auto">
+                    理解张量的数学定义和物理意义是掌握更复杂知识的关键
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 概念卡片1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-vector-square text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">什么是张量？</h3>
+                    <p class="text-neutral mb-4">
+                        张量是向量和矩阵的推广，可以表示任意维度的多维数组。
+                    </p>
+                    <div class="formula-container">
+                        \( T^{i_1 i_2 \dots i_n}_{j_1 j_2 \dots j_m} \)
+                    </div>
+                    <p class="text-neutral text-sm">
+                        其中上标表示协变指标，下标表示逆变指标
+                    </p>
+                </div>
+                
+                <!-- 概念卡片2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-superscript text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">张量阶数</h3>
+                    <p class="text-neutral mb-4">
+                        张量的阶数（秩）表示其维度的数量。
+                    </p>
+                    <div class="formula-container">
+                        \( \begin{align}
+                        &0阶: 标量 \\
+                        &1阶: 向量 \\
+                        &2阶: 矩阵 \\
+                        &n阶: n维数组
+                        \end{align} \)
+                    </div>
+                </div>
+                
+                <!-- 概念卡片3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-cubes text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">物理意义</h3>
+                    <p class="text-neutral mb-4">
+                        在物理学中，张量描述与坐标系无关的物理量。
+                    </p>
+                    <div class="formula-container">
+                        \( \begin{align}
+                        &应力张量 \\
+                        &电磁场张量 \\
+                        &爱因斯坦张量
+                        \end{align} \)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 张量可视化 -->
+            <div class="mt-12 bg-white rounded-xl shadow-md p-6 md:p-8">
+                <h3 class="text-xl font-semibold mb-6">张量维度可视化</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-primary font-bold text-xl">0D</span>
+                        </div>
+                        <h4 class="font-medium mb-2">标量</h4>
+                        <p class="text-sm text-neutral">一个数值</p>
+                        <div class="formula-container mt-3">
+                            \( 5 \)
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-primary font-bold text-xl">1D</span>
+                        </div>
+                        <h4 class="font-medium mb-2">向量</h4>
+                        <p class="text-sm text-neutral">一维数组</p>
+                        <div class="formula-container mt-3">
+                            \( \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix} \)
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-primary font-bold text-xl">2D</span>
+                        </div>
+                        <h4 class="font-medium mb-2">矩阵</h4>
+                        <p class="text-sm text-neutral">二维数组</p>
+                        <div class="formula-container mt-3">
+                            \( \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{bmatrix} \)
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg p-4 text-center">
+                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-primary font-bold text-xl">3D</span>
+                        </div>
+                        <h4 class="font-medium mb-2">3D张量</h4>
+                        <p class="text-sm text-neutral">三维数组</p>
+                        <div class="formula-container mt-3">
+                            \( \begin{bmatrix} 
+                            \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \\
+                            \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} \\
+                            \begin{bmatrix} 9 & 10 \\ 11 & 12 \end{bmatrix}
+                            \end{bmatrix} \)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 张量运算 -->
+        <section id="operations" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark">张量运算</h2>
+                <p class="text-neutral mt-4 max-w-2xl mx-auto">
+                    掌握张量的基本运算规则是应用张量解决实际问题的基础
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="py-4 px-6 text-left text-lg font-semibold">运算</th>
+                                <th class="py-4 px-6 text-left text-lg font-semibold">数学表达式</th>
+                                <th class="py-4 px-6 text-left text-lg font-semibold">描述</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">张量加法</td>
+                                <td class="py-4 px-6">
+                                    \( C_{ij} = A_{ij} + B_{ij} \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    对应元素相加，要求两个张量维度相同
+                                </td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">标量乘法</td>
+                                <td class="py-4 px-6">
+                                    \( C_{ij} = k \cdot A_{ij} \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    张量的每个元素都乘以标量k
+                                </td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">张量积</td>
+                                <td class="py-4 px-6">
+                                    \( C_{ijkl} = A_{ij} \otimes B_{kl} \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    也称为克罗内克积，生成一个更高维度的张量
+                                </td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">张量收缩</td>
+                                <td class="py-4 px-6">
+                                    \( C_{il} = \sum_j A_{ij} \cdot B_{jl} \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    对指定的两个指标求和，降低张量的阶数
+                                </td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">点积</td>
+                                <td class="py-4 px-6">
+                                    \( C = A_{i} \cdot B_{i} = \sum_i A_i B_i \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    向量的点积是张量收缩的特例
+                                </td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">外积</td>
+                                <td class="py-4 px-6">
+                                    \( C_{ij} = A_i \otimes B_j \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    两个向量的外积生成一个矩阵
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-4 px-6 font-medium">张量迹</td>
+                                <td class="py-4 px-6">
+                                    \( \text{tr}(A) = \sum_i A_{ii} \)
+                                </td>
+                                <td class="py-4 px-6 text-neutral">
+                                    方阵对角元素的和，是张量收缩的特例
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 应用领域 -->
+        <section id="applications" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark">应用领域</h2>
+                <p class="text-neutral mt-4 max-w-2xl mx-auto">
+                    张量在多个学科和领域中都有重要应用
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 应用卡片1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-primary/10 relative">
+                        <img src="https://picsum.photos/600/400?random=10" alt="物理学" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <h3 class="text-white font-semibold p-4 text-lg">物理学</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>广义相对论中的度规张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>连续介质力学中的应力和应变张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>电磁学中的电磁场张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>量子力学中的密度矩阵</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 应用卡片2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-primary/10 relative">
+                        <img src="https://picsum.photos/600/400?random=11" alt="计算机科学" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <h3 class="text-white font-semibold p-4 text-lg">计算机科学</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>深度学习中的多维数组表示</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>计算机图形学中的变换张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>数据挖掘中的张量分解</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>自然语言处理中的词向量表示</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 应用卡片3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-primary/10 relative">
+                        <img src="https://picsum.photos/600/400?random=12" alt="工程学" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <h3 class="text-white font-semibold p-4 text-lg">工程学</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>材料科学中的弹性张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>流体力学中的雷诺应力张量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>结构工程中的应力分析</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
+                                <span>信号处理中的多维信号表示</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 代码示例 -->
+        <section id="examples" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark">代码示例</h2>
+                <p class="text-neutral mt-4 max-w-2xl mx-auto">
+                    使用Python和常见库进行张量操作的示例代码
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- 代码示例1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gray-50 p-4 border-b flex justify-between items-center">
+                        <h3 class="font-semibold">NumPy中的张量操作</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" onclick="copyCode('code1')">
+                                复制代码
+                            </button>
+                            <span class="text-xs text-neutral" id="copyStatus1"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-50 rounded-lg p-4 overflow-x-auto text-sm"><code id="code1">import numpy as np
+
+# 创建不同维度的张量
+scalar = np.array(5)  # 0D张量（标量）
+vector = np.array([1, 2, 3])  # 1D张量（向量）
+matrix = np.array([[1, 2], [3, 4], [5, 6]])  # 2D张量（矩阵）
+tensor3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])  # 3D张量
+
+print("标量形状:", scalar.shape)  # 输出: ()
+print("向量形状:", vector.shape)  # 输出: (3,)
+print("矩阵形状:", matrix.shape)  # 输出: (3, 2)
+print("3D张量形状:", tensor3d.shape)  # 输出: (2, 2, 2)
+
+# 张量加法
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+C = A + B
+print("张量加法结果:\n", C)
+
+# 张量乘法
+D = A * B  # 逐元素乘法
+E = np.dot(A, B)  # 矩阵乘法（张量收缩）
+print("逐元素乘法结果:\n", D)
+print("矩阵乘法结果:\n", E)
+
+# 张量转置
+F = matrix.T
+print("矩阵转置结果:\n", F)
+
+# 张量重塑
+G = matrix.reshape(2, 3)
+print("重塑后的张量形状:", G.shape)</code></pre>
+                    </div>
+                </div>
+                
+                <!-- 代码示例2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gray-50 p-4 border-b flex justify-between items-center">
+                        <h3 class="font-semibold">PyTorch中的张量操作</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" onclick="copyCode('code2')">
+                                复制代码
+                            </button>
+                            <span class="text-xs text-neutral" id="copyStatus2"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-50 rounded-lg p-4 overflow-x-auto text-sm"><code id="code2">import torch
+
+# 创建张量
+x = torch.tensor([1, 2, 3])  # 1D张量
+y = torch.tensor([[1, 2], [3, 4]])  # 2D张量
+z = torch.zeros((2, 3, 4))  # 3D零张量
+w = torch.randn((2, 2, 2, 2))  # 4D随机张量
+
+print("x形状:", x.shape)  # 输出: torch.Size([3])
+print("y形状:", y.shape)  # 输出: torch.Size([2, 2])
+print("z形状:", z.shape)  # 输出: torch.Size([2, 3, 4])
+print("w形状:", w.shape)  # 输出: torch.Size([2, 2, 2, 2])
+
+# 张量运算
+a = torch.tensor([[1, 2], [3, 4]])
+b = torch.tensor([[5, 6], [7, 8]])
+
+# 加法
+c = a + b
+
+# 矩阵乘法
+d = torch.matmul(a, b)  # 等同于 a @ b
+
+# 逐元素乘法
+e = a * b
+
+# 张量重塑
+f = a.reshape(1, 4)
+
+# 张量转置
+g = a.t()
+
+# 深度学习中常用的张量操作
+h = torch.relu(a)  # ReLU激活函数
+i = torch.softmax(a, dim=1)  # Softmax函数
+j = torch.mean(a, dim=0)  # 按维度求均值
+
+print("矩阵乘法结果:\n", d)
+print("ReLU激活结果:\n", h)</code></pre>
+                    </div>
+                </div>
+                
+                <!-- 代码示例3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gray-50 p-4 border-b flex justify-between items-center">
+                        <h3 class="font-semibold">TensorFlow中的张量操作</h3>
+                        <div class="flex space-x-2">
+                            <button class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full" onclick="copyCode('code3')">
+                                复制代码
+                            </button>
+                            <span class="text-xs text-neutral" id="copyStatus3"></span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-50 rounded-lg p-4 overflow-x-auto text-sm"><code id="code3">import tensorflow as tf
+
+# 创建张量
+a = tf.constant([1, 2, 3])  # 1D张量
+b = tf.constant([[1, 2], [3, 4]])  # 2D张量
+c = tf.zeros((2, 3, 4))  # 3D零张量
+d = tf.random.normal((2, 2, 2))  # 3D随机张量
+
+print("a形状:", a.shape)  # 输出: (3,)
+print("b形状:", b.shape)  # 输出: (2, 2)
+print("c形状:", c.shape)  # 输出: (2, 3, 4)
+print("d形状:", d.shape)  # 输出: (2, 2, 2)
+
+# 张量运算
+x = tf.constant([[1, 2], [3, 4]])
+y = tf.constant([[5, 6], [7, 8]])
+
+# 加法
+z_add = x + y
+
+# 矩阵乘法
+z_mul = tf.matmul(x, y)
+
+# 逐元素乘法
+z_elem_mul = x * y
+
+# 张量重塑
+z_reshape = tf.reshape(x, [1, 4])
+
+# 张量转置
+z_transpose = tf.transpose(x)
+
+# 深度学习中常用的张量操作
+z_relu = tf.nn.relu(x)
+z_sigmoid = tf.nn.sigmoid(x)
+z_softmax = tf.nn.softmax(x, axis=1)
+
+print("矩阵乘法结果:\n", z_mul.numpy())
+print("ReLU激活结果:\n", z_relu.numpy())</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习资源 -->
+        <section id="resources" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-dark">学习资源</h2>
+                <p class="text-neutral mt-4 max-w-2xl mx-auto">
+                    推荐的教材、在线课程和工具，帮助你更深入地学习张量知识
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 资源卡片1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-primary/10 relative">
+                        <img src="https://picsum.photos/600/400?random=20" alt="教材" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <h3 class="text-white font-semibold p-4 text-lg">推荐教材</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-book text-primary mt-1 mr-3"></i>
+                                <span>《张量分析及其应用》，黄克智等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-book text-primary mt-1 mr
