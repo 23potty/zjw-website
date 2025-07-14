@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优雅的"反击"</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sass: {
+                            light: '#f5f0ff',
+                            DEFAULT: '#8a4fff',
+                            dark: '#5a2da8'
+                        },
+                        wisdom: {
+                            100: '#f8f9fa',
+                            200: '#e9ecef',
+                            300: '#dee2e6',
+                            400: '#ced4da',
+                            500: '#adb5bd',
+                            600: '#6c757d',
+                            700: '#495057',
+                            800: '#343a40',
+                            900: '#212529',
+                        }
+                    },
+                    fontFamily: {
+                        elegant: ['"ZCOOL XiaoWei"', 'serif'],
+                        playful: ['"Ma Shan Zheng"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-subtle {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            }
+            .bg-gradient-sass {
+                background: linear-gradient(135deg, #f5f0ff 0%, #e6d9ff 100%);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .card-shadow {
+                box-shadow: 0 10px 25px -5px rgba(138, 79, 255, 0.1), 0 8px 10px -6px rgba(138, 79, 255, 0.1);
+            }
+            .bubble {
+                position: relative;
+                background: white;
+                border-radius: 1rem;
+            }
+            .bubble:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 10%;
+                width: 0;
+                height: 0;
+                border: 20px solid transparent;
+                border-top-color: white;
+                border-bottom: 0;
+                border-left: 0;
+                margin-bottom: -20px;
+            }
+            .spin-slow {
+                animation: spin 20s linear infinite;
+            }
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-sass min-h-screen font-elegant text-wisdom-800 overflow-x-hidden">
+    <!-- 装饰元素 -->
+    <div class="fixed top-10 right-10 text-sass text-4xl opacity-20 spin-slow">
+        <i class="fa fa-comment"></i>
+    </div>
+    <div class="fixed bottom-20 left-5 text-sass text-3xl opacity-30 float">
+        <i class="fa fa-quote-left"></i>
+    </div>
+    <div class="fixed top-40 left-10 text-sass text-5xl opacity-10 spin-slow" style="animation-delay: 5s">
+        <i class="fa fa-comments"></i>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="container mx-auto px-4 py-16 relative z-10">
+        <!-- 标题区域 -->
+        <header class="text-center mb-16">
+            <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-playful text-sass mb-6 text-shadow-subtle">
+                优雅的"反击"指南
+            </h1>
+            <div class="w-32 h-1 bg-sass mx-auto rounded-full mb-6"></div>
+            <p class="text-wisdom-600 text-lg italic">用智慧代替脏话，让语言更有力量</p>
+        </header>
+        
+        <!-- 主要内容区 -->
+        <main class="max-w-5xl mx-auto">
+            <!-- 介绍部分 -->
+            <section class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-16 hover-scale">
+                <h2 class="text-2xl md:text-3xl font-playful text-sass mb-6 text-center">为什么选择优雅的表达方式？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-sass-light p-6 rounded-2xl">
+                        <div class="text-sass text-4xl mb-4 text-center">
+                            <i class="fa fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sass mb-3 text-center">展现智慧</h3>
+                        <p class="text-wisdom-700 text-center">
+                            巧妙的语言比脏话更能体现你的思考深度和应变能力。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-sass-light p-6 rounded-2xl">
+                        <div class="text-sass text-4xl mb-4 text-center">
+                            <i class="fa fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sass mb-3 text-center">保持风度</h3>
+                        <p class="text-wisdom-700 text-center">
+                            用文明的语言回应，能让你在冲突中保持高尚的姿态。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-sass-light p-6 rounded-2xl">
+                        <div class="text-sass text-4xl mb-4 text-center">
+                            <i class="fa fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-sass mb-3 text-center">直击要害</h3>
+                        <p class="text-wisdom-700 text-center">
+                            精准的措辞往往比粗俗的辱骂更具有杀伤力。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 类型选择器 -->
+            <section class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-16">
+                <h2 class="text-2xl md:text-3xl font-playful text-sass mb-8 text-center">选择你的"反击"风格</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <button class="style-btn bg-sass hover:bg-sass-dark text-white font-bold py-3 px-4 rounded-xl shadow transition-all text-center" data-style="witty">
+                        <i class="fa fa-lightbulb-o mr-2"></i> 机智幽默
+                    </button>
+                    <button class="style-btn bg-sass-light hover:bg-sass/80 text-sass font-bold py-3 px-4 rounded-xl shadow transition-all text-center" data-style="literary">
+                        <i class="fa fa-book mr-2"></i> 文艺含蓄
+                    </button>
+                    <button class="style-btn bg-sass-light hover:bg-sass/80 text-sass font-bold py-3 px-4 rounded-xl shadow transition-all text-center" data-style="logical">
+                        <i class="fa fa-balance-scale mr-2"></i> 理性分析
+                    </button>
+                    <button class="style-btn bg-sass-light hover:bg-sass/80 text-sass font-bold py-3 px-4 rounded-xl shadow transition-all text-center" data-style="poetic">
+                        <i class="fa fa-pencil mr-2"></i> 诗意讽刺
+                    </button>
+                </div>
+            </section>
+            
+            <!-- 精选内容区 -->
+            <section id="content-section" class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-16">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-playful text-sass mb-2">机智幽默</h2>
+                    <p class="text-wisdom-600 italic">用轻松诙谐的方式化解矛盾</p>
+                </div>
+                
+                <!-- 内容卡片 -->
+                <div id="content-cards" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- 内容项将通过JavaScript动态生成 -->
+                </div>
+                
+                <!-- 图片区域 -->
+                <div id="content-images" class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                    <!-- 图片将通过JavaScript动态生成 -->
+                </div>
+            </section>
+            
+            <!-- 创作工具 -->
+            <section class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-16">
+                <h2 class="text-2xl md:text-3xl font-playful text-sass mb-6 text-center">创作属于你的"优雅反击"</h2>
+                
+                <div class="bg-sass-light rounded-2xl p-6 mb-8">
+                    <div class="mb-4">
+                        <label for="insult" class="block text-wisdom-700 font-bold mb-2">对方的言论：</label>
+                        <textarea id="insult" rows="3" class="w-full px-4 py-2 border border-wisdom-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sass focus:border-transparent" placeholder="输入对方的言论..."></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="tone" class="block text-wisdom-700 font-bold mb-2">选择语气：</label>
+                            <select id="tone" class="w-full px-4 py-2 border border-wisdom-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sass focus:border-transparent">
+                                <option value="humorous">幽默诙谐</option>
+                                <option value="sarcastic">讽刺挖苦</option>
+                                <option value="polite">礼貌回击</option>
+                                <option value="wise">智慧反驳</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="style" class="block text-wisdom-700 font-bold mb-2">选择风格：</label>
+                            <select id="style" class="w-full px-4 py-2 border border-wisdom-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sass focus:border-transparent">
+                                <option value="literary">文艺风</option>
+                                <option value="logical">理性风</option>
+                                <option value="poetic">诗意风</option>
+                                <option value="modern">现代风</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="intensity" class="block text-wisdom-700 font-bold mb-2">反击强度：</label>
+                            <select id="intensity" class="w-full px-4 py-2 border border-wisdom-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sass focus:border-transparent">
+                                <option value="light">轻度</option>
+                                <option value="medium">中度</option>
+                                <option value="strong">重度</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-btn" class="bg-sass hover:bg-sass-dark text-white font-bold py-3 px-6 rounded-lg shadow transition-all">
+                        <i class="fa fa-magic mr-2"></i> 生成反击
+                    </button>
+                </div>
+                
+                <div id="result-container" class="hidden">
+                    <div class="mb-6">
+                        <h3 class="font-bold text-lg mb-2">生成的优雅回应：</h3>
+                        <div class="bubble p-6 bg-white rounded-2xl mb-4">
+                            <p id="result-text" class="text-wisdom-800">您的优雅回应将显示在这里...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button id="copy-result" class="bg-sass hover:bg-sass-dark text-white font-bold py-2 px-4 rounded-lg shadow transition-all">
+                            <i class="fa fa-copy mr-2"></i> 复制回应
+                        </button>
+                        <button id="share-result" class="bg-sass-light hover:bg-sass/80 text-sass font-bold py-2 px-4 rounded-lg shadow transition-all">
+                            <i class="fa fa-share-alt mr-2"></i> 分享
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 名言警句 -->
+            <section class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 mb-16">
+                <h2 class="text-2xl md:text-3xl font-playful text-sass mb-6 text-center">语言的艺术</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-sass-light p-6 rounded-2xl shadow-md hover-scale">
+                        <p class="text-wisdom-700 italic mb-4">"语言是思想的衣裳。"</p>
+                        <p class="text-sass font-bold text-right">—— 塞缪尔·约翰逊</p>
+                    </div>
+                    
+                    <div class="bg-sass-light p-6 rounded-2xl shadow-md hover-scale">
+                        <p class="text-wisdom-700 italic mb-4">"言语之力，大到可以从坟墓唤醒死人，可以把生者活埋，把侏儒变成巨无霸，把巨无霸彻底打垮。"</p>
+                        <p class="text-sass font-bold text-right">—— 海涅</p>
+                    </div>
+                    
+                    <div class="bg-sass-light p-6 rounded-2xl shadow-md hover-scale">
+                        <p class="text-wisdom-700 italic mb-4">"如果你要使别人喜欢你，如果你想他人对你产生兴趣，你注意的一点是：谈论别人感兴趣的事情。"</p>
+                        <p class="text-sass font-bold text-right">—— 戴尔·卡耐基</p>
+                    </div>
+                    
+                    <div class="bg-sass-light p-6 rounded-2xl shadow-md hover-scale">
+                        <p class="text-wisdom-700 italic mb-4">"我们说的话可能会被记住一分钟；我们做的事可能会被记住一小时；但我们的品格却会被记住一辈子。"</p>
+                        <p class="text-sass font-bold text-right">—— 阿尔伯特·爱因斯坦</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="text-center mt-20 text-wisdom-600 text-sm">
+            <p>用智慧武装语言 | <span id="currentYear"></span></p>
+        </footer>
+    </div>
+    
+    <!-- 复制提示 -->
+    <div id="copy-toast" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-wisdom-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50">
+        已复制到剪贴板！
+    </div>
+
+    <script>
+        // 设置当前年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // 定义所有风格的内容数据
+        const contentData = {
+            witty: {
+                title: "机智幽默",
+                description: "用轻松诙谐的方式化解矛盾",
+                cards: [
+                    {
+                        category: "面对无理指责",
+                        content: "您的想象力真是丰富，都可以去写科幻小说了。",
+                        type: "幽默讽刺",
+                        icon: "comment"
+                    },
+                    {
+                        category: "应对炫耀",
+                        content: "您这么厉害，是准备去拯救世界吗？需要我给您递披风吗？",
+                        type: "夸张反讽",
+                        icon: "comment"
+                    },
+                    {
+                        category: "回应偏见",
+                        content: "您的观点很独特，就像恐龙化石一样珍贵稀有。",
+                        type: "类比幽默",
+                        icon: "comment"
+                    },
+                    {
+                        category: "反击挑衅",
+                        content: "看来您今天是专门来给我提供喜剧素材的，谢谢惠顾！",
+                        type: "角色扮演",
+                        icon: "comment"
+                    },
+                    {
+                        category: "应对批评",
+                        content: "您的建议就像流星雨一样，偶尔出现一次还挺惊喜的。",
+                        type: "比喻幽默",
+                        icon: "comment"
+                    },
+                    {
+                        category: "回应质疑",
+                        content: "您这是在怀疑我的智商吗？要不要我给您表演个心算？",
+                        type: "机智反问",
+                        icon: "comment"
+                    },
+                    {
+                        category: "面对恶意",
+                        content: "您这么凶，是吃火药长大的吗？小心别把自己炸伤了。",
+                        type: "夸张比喻",
+                        icon: "comment"
+                    },
+                    {
+                        category: "应对炫耀财富",
+                        content: "您这是在炫富吗？我建议您去参加《吉尼斯世界纪录》。",
+                        type: "幽默调侃",
+                        icon: "comment"
+                    }
+                ],
+                images: [
+                    "https://picsum.photos/seed/witty1/600/400",
+                    "https://picsum.photos/seed/witty2/600/400",
+                    "https://picsum.photos/seed/witty3/600/400",
+                    "https://picsum.photos/seed/witty4/600/400",
+                    "https://picsum.photos/seed/witty5/600/400",
+                    "https://picsum.photos/seed/witty6/600/400"
+                ],
+                imageAlt: [
+                    "幽默反击示例1",
+                    "幽默反击示例2",
+                    "幽默反击示例3",
+                    "幽默反击示例4",
+                    "幽默反击示例5",
+                    "幽默反击示例6"
+                ]
+            },
+            literary: {
+                title: "文艺含蓄",
+                description: "用优雅的文字表达不满",
+                cards: [
+                    {
+                        category: "面对无理指责",
+                        content: "阁下之言，如沐春风，却也如坠云雾，不知所云。",
+                        type: "委婉讽刺",
+                        icon: "book"
+                    },
+                    {
+                        category: "应对炫耀",
+                        content: "君之才华，如皓月当空，令人仰望，却也觉遥不可及。",
+                        type: "欲抑先扬",
+                        icon: "book"
+                    },
+                    {
+                        category: "回应偏见",
+                        content: "仁者见仁，智者见智，君之所见，恐非全貌。",
+                        type: "哲理回应",
+                        icon: "book"
+                    },
+                    {
+                        category: "反击挑衅",
+                        content: "清风徐来，水波不兴，君之言语，如投石入水，泛起涟漪而已。",
+                        type: "以静制动",
+                        icon: "book"
+                    },
+                    {
+                        category: "应对批评",
+                        content: "良药苦口利于病，忠言逆耳利于行，然君之言语，苦口而未必良药。",
+                        type: "辩证看待",
+                        icon: "book"
+                    },
+                    {
+                        category: "回应质疑",
+                        content: "真理越辩越明，然君之质疑，如雾里看花，终隔一层。",
+                        type: "理性回应",
+                        icon: "book"
+                    },
+                    {
+                        category: "面对恶意",
+                        content: "相由心生，境由心转，君之恶意，如镜中之像，反观自身而已。",
+                        type: "自我反思",
+                        icon: "book"
+                    },
+                    {
+                        category: "应对炫耀财富",
+                        content: "钱财如粪土，仁义值千金，君之炫耀，如粪土之堆砌，徒增其臭而已。",
+                        type: "价值批判",
+                        icon: "book"
+                    }
+                ],
+                images: [
+                    "https://picsum.photos/seed/literary1/600/400",
+                    "https://picsum.photos/seed/literary2/600/400",
+                    "https://picsum.photos/seed/literary3/600/400",
+                    "https://picsum.photos/seed/literary4/600/400",
+                    "https://picsum.photos/seed/literary5/600/400",
+                    "https://picsum.photos/seed/literary6/600/400"
+                ],
+                imageAlt: [
+                    "文艺反击示例1",
+                    "文艺反击示例2",
+                    "文艺反击示例3",
+                    "文艺反击示例4",
+                    "文艺反击示例5",
+                    "文艺反击示例6"
+                ]
+            },
+            logical: {
+                title: "理性分析",
+                description: "用逻辑和事实进行反驳",
+                cards: [
+                    {
+                        category: "面对无理指责",
+                        content: "您的指责缺乏事实依据，在逻辑学中属于‘诉诸情感’的谬误。",
+                        type: "逻辑批判",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "应对炫耀",
+                        content: "您的成就值得肯定，但在讨论中过度强调个人优势，可能会影响客观性。",
+                        type: "理性提醒",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "回应偏见",
+                        content: "您的观点存在明显的认知偏差，建议从多个角度进行思考。",
+                        type: "多角度分析",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "反击挑衅",
+                        content: "您的言论带有明显的攻击性，这无助于问题的解决，我们可以理性讨论。",
+                        type: "以理服人",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "应对批评",
+                        content: "感谢您的批评，但请具体指出问题所在，这样我才能更好地改进。",
+                        type: "建设性回应",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "回应质疑",
+                        content: "您的质疑有一定道理，但我们可以通过数据和事实来验证。",
+                        type: "实证分析",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "面对恶意",
+                        content: "恶意攻击并不能证明您的观点正确，反而会暴露您的不理性。",
+                        type: "情绪管理",
+                        icon: "balance-scale"
+                    },
+                    {
+                        category: "应对炫耀财富",
+                        content: "财富与个人价值并无必然联系，过度炫耀可能反映出内心的空虚。",
+                        type: "价值分析",
+                        icon: "balance-scale"
+                    }
+                ],
+                images: [
+                    "https://picsum.photos/seed/logical1/600/400",
+                    "https://picsum.photos/seed/logical2/600/400",
+                    "https://picsum.photos/seed/logical3/600/400",
+                    "https://picsum.photos/seed/logical4/600/400",
+                    "https://picsum.photos/seed/logical5/600/400",
+                    "https://picsum.photos/seed/logical6/600/400"
+                ],
+                imageAlt: [
+                    "理性反击示例1",
+                    "理性反击示例2",
+                    "理性反击示例3",
+                    "理性反击示例4",
+                    "理性反击示例5",
+                    "理性反击示例6"
+                ]
+            },
+            poetic: {
+                title: "诗意讽刺",
+                description: "以诗为刃，温柔反击",
+                cards: [
+                    {
+                        category: "面对无理指责",
+                        content: "君之言语如利刃，伤人无形却无痕，然吾心似明镜，不染尘埃自清明。",
+                        type: "隐喻讽刺",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "应对炫耀",
+                        content: "金樽清酒斗十千，玉盘珍羞直万钱，然吾独爱山间月，皎洁无瑕照我心。",
+                        type: "对比讽刺",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "回应偏见",
+                        content: "横看成岭侧成峰，远近高低各不同，不识庐山真面目，只缘身在此山中。",
+                        type: "哲理讽刺",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "反击挑衅",
+                        content: "宠辱不惊，闲看庭前花开花落；去留无意，漫随天外云卷云舒。",
+                        type: "淡然处之",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "应对批评",
+                        content: "良药苦口利于病，忠言逆耳利于行，然君之言语，如苦酒入喉，难以下咽。",
+                        type: "委婉拒绝",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "回应质疑",
+                        content: "天生我材必有用，千金散尽还复来，君之质疑，如蚍蜉撼树，可笑至极。",
+                        type: "自信反击",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "面对恶意",
+                        content: "恶意如潮水，汹涌而来，然吾心如磐石，岿然不动。",
+                        type: "坚强应对",
+                        icon: "pencil"
+                    },
+                    {
+                        category: "应对炫耀财富",
+                        content: "不义而富且贵，于我如浮云，君之炫耀，如过眼云烟，转瞬即逝。",
+                        type: "轻视态度",
+                        icon: "pencil"
+                    }
+                ],
+                images: [
+                    "https://picsum.photos/seed/poetic1/600/400",
+                    "https://picsum.photos/seed/poetic2/600/400",
+                    "https://picsum.photos/seed/poetic3/600/400",
+                    "https://picsum.photos/seed/poetic4/600/400",
+                    "https://picsum.photos/seed/poetic5/600/400",
+                    "https://picsum.photos/seed/poetic6/600/400"
+                ],
+                imageAlt: [
+                    "诗意反击示例1",
+                    "诗意反击示例2",
+                    "诗意反击示例3",
+                    "诗意反击示例4",
+                    "诗意反击示例5",
+                    "诗意反击示例6"
+                ]
+            }
+        };
+        
+        // 风格按钮切换
+        const styleBtns = document.querySelectorAll('.style-btn');
+        styleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 移除所有按钮的活跃状态
+                styleBtns.forEach(b => {
+                    b.classList.remove('bg-sass');
+                    b.classList.add('bg-sass-light');
+                    b.classList.remove('text-white');
+                    b.classList.add('text-sass');
+                });
+                
+                // 设置当前按钮为活跃状态
+                btn.classList.remove('bg-sass-light');
+                btn.classList.add('bg-sass');
+                btn.classList.remove('text-sass');
+                btn.classList.add('text-white');
+                
+                // 更新内容区域
+                updateContentSection(btn.dataset.style);
+            });
+        });
+        
+        // 更新内容区域
+        function updateContentSection(style) {
+            const contentSection = document.getElementById('content-section');
+            const contentTitle = contentSection.querySelector('h2');
+            const contentDesc = contentSection.querySelector('p');
+            const contentCards = document.getElementById('content-cards');
+            const contentImages = document.getElementById('content-images');
+            
+            // 获取对应风格的数据
+            const data = contentData[style];
+            
+            // 更新标题和描述
+            contentTitle.textContent = data.title;
+            contentDesc.textContent = data.description;
+            
+            // 清空现有内容
+            contentCards.innerHTML = '';
+            contentImages.innerHTML = '';
+            
+            // 随机选择4个卡片内容
+            const shuffledCards = [...data.cards].sort(() => 0.5 - Math.random());
+            const selectedCards = shuffledCards.slice(0, 4);
+            
+            // 添加卡片内容
+            selectedCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'bg-sass-light rounded-2xl shadow-md p-6 hover-scale';
+                cardElement.innerHTML = `
+                    <div class="flex items-start mb-4">
+                        <div class="text-sass text-2xl mr-3 mt-1">
+                            <i class="fa fa-${card.icon}"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">${card.category}</h3>
+                            <p class="text-wisdom-700">${card.content}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <span class="text-xs text-wisdom-500">${card.type}</span>
+                        <button class="copy-btn text-sass hover:text-sass-dark transition-colors">
+                            <i class="fa fa-copy"></i> 复制
+                        </button>
+                    </div>
+                `;
+                contentCards.appendChild(cardElement);
+            });
+            
+            // 随机选择3个图片
+            const shuffledImages = [...data.images].sort(() => 0.5 - Math.random());
+            const shuffledImageAlt = [...data.imageAlt].sort(() => 0.5 - Math.random());
+            const selectedImages = shuffledImages.slice(0, 3);
+            const selectedImageAlt = shuffledImageAlt.slice(0, 3);
+            
+            // 添加图片
+            selectedImages.forEach((image, index) => {
+                const imageElement = document.createElement('div');
+                imageElement.className = 'rounded-xl overflow-hidden shadow-md hover-scale';
+                imageElement.innerHTML = `
+                    <img src="${image}" alt="${selectedImageAlt[index]}" class="w-full h-48 object-cover">
+                `;
+                contentImages.appendChild(imageElement);
+            });
+            
+            // 重新绑定复制按钮事件
+            bindCopyButtons();
+        }
+        
+        // 绑定复制按钮事件
+        function bindCopyButtons() {
+            const copyBtns = document.querySelectorAll('.copy-btn');
+            copyBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const text = btn.parentElement.previousElementSibling.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        showCopyToast();
+                    });
+                });
+            });
+        }
+        
+        // 简单的哈希函数，用于将输入转换为固定的数值
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // 转换为32位整数
+            }
+            // 确保返回一个非负整数
+            return Math.abs(hash);
+        }
+        
+        // 生成按钮功能
+        const generateBtn = document.getElementById('generate-btn');
+        const resultContainer = document.getElementById('result-container');
+        const resultText = document.getElementById('result-text');
+        
+        generateBtn.addEventListener('click', () => {
+            const insult = document.getElementById('insult').value;
+            const tone = document.getElementById('tone').value;
+            const style = document.getElementById('style').value;
+            const intensity = document.getElementById('intensity').value;
+            
+            if (insult.trim() === '') {
+                alert('请输入对方的言论');
+                return;
+            }
+            
+            // 生成回应
+            const response = generateResponse(insult, tone, style, intensity);
+            resultText.textContent = response;
+            resultContainer.classList.remove('hidden');
+            
+            // 滚动到结果区域
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // 复制结果按钮
+        document.getElementById('copy-result').addEventListener('click', () => {
+            const text = resultText.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyToast();
+            });
+        });
+        
+        // 显示复制提示
+        function showCopyToast() {
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2000);
+        }
+        
+        // 检查紧急情况的功能
+        function checkCriticalSituation(insult) {
+            // 检查是否包含直接的人身攻击
+            const criticalWords = ['蠢货', '白痴', '笨蛋', '废物', '傻瓜', '疯子', '猪', '狗'];
+            for (const word of criticalWords) {
+                if (insult.includes(word)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // 生成回应函数 - 对于相同的输入组合将生成相同的回应
+        function generateResponse(insult, tone, style, intensity) {
+            // 先进行紧急情况检查
+            if (checkCriticalSituation(insult)) {
+                return "我理解您可能很生气，但请尊重他人。";
+            }
+            
+            // 分析对方言论的情感倾向
+            const sentiment = analyzeSentiment(insult);
+            
+            // 根据不同风格定义不同的回应模板
+            const templates = {
+                literary: {
+                    humorous: {
+                        light: [
+                            "阁下想象力之丰富，直追天马行空之境，令在下叹为观止。",
+                            "君之高论，恰似云间仙鹤，超凡脱俗，令吾等凡人难以企及。",
+                            "这般奇思妙想，若付之笔端，定能成就一部传世奇书。"
+                        ],
+                        medium: [
+                            "阁下这番言论，如陈年普洱，越品越觉滋味独特。",
+                            "君之口才，堪比战国纵横家，只可惜未逢乱世。",
+                            "这般妙语连珠，当真是出口成章，佩服佩服。"
+                        ],
+                        strong: [
+                            "阁下之高见，犹如寒冬腊月之冰水，透心凉。",
+                            "君之言论，恰似那破锣之声，刺耳难耐。",
+                            "这般见识，当真是井底之蛙，可怜可叹。"
+                        ]
+                    },
+                    sarcastic: {
+                        light: [
+                            "阁下这等见识，当真是独树一帜，令人耳目一新。",
+                            "君之高论，如醍醐灌顶，令吾等豁然开朗。",
+                            "这般妙语，当真是字字珠玑，掷地有声。"
+                        ],
+                        medium: [
+                            "阁下这番宏论，如滔滔江水，连绵不绝。",
+                            "君之口才，堪比那说书先生，只可惜内容空洞。",
+                            "这般言论，当真是空洞无物，徒费口舌。"
+                        ],
+                        strong: [
+                            "阁下之高见，犹如那臭水沟之水，令人作呕。",
+                            "君之言论，恰似那乌鸦聒噪，烦不胜烦。",
+                            "这般见识，当真是愚昧无知，无可救药。"
+                        ]
+                    },
+                    polite: {
+                        light: [
+                            "阁下所言，虽与在下观点相左，但仍不失为一家之言。",
+                            "君之见解，在下虽不能苟同，但亦尊重之。",
+                            "这般言论，虽不中听，但亦有可取之处。"
+                        ],
+                        medium: [
+                            "阁下这番言论，未免有些偏颇，还请三思而后言。",
+                            "君之高论，在下实难认同，还请斟酌一二。",
+                            "这般说法，恐有失公允，还请慎言。"
+                        ],
+                        strong: [
+                            "阁下之言论，已逾礼仪之范畴，还请自重。",
+                            "君之高见，在下实难苟同，若再如此，休怪在下无礼。",
+                            "这般言语，已属冒犯，若不知悔改，休怪在下不客气。"
+                        ]
+                    },
+                    wise: {
+                        light: [
+                            "阁下之言，令在下想起古人云：'言者无罪，闻者足戒。'",
+                            "君之见解，恰似那暗夜明灯，虽微末却指引方向。",
+                            "这般言论，虽朴实无华，却蕴含着深刻的哲理。"
+                        ],
+                        medium: [
+                            "阁下这番言论，看似有理，实则漏洞百出，还请深思。",
+                            "君之高论，如空中楼阁，看似华丽，实则虚无缥缈。",
+                            "这般说法，未免过于片面，还请全面看待问题。"
+                        ],
+                        strong: [
+                            "阁下之见识，犹如夏虫语冰，不足与论。",
+                            "君之言论，已显狭隘，若不拓宽胸怀，难成大器。",
+                            "这般思维，当真是顽固不化，无可救药。"
+                        ]
+                    }
+                },
+                logical: {
+                    humorous: {
+                        light: [
+                            "根据逻辑学中的‘归谬法’，您的观点可推导出有趣的结论。",
+                            "您的论证过程，让我想起了数学中的‘发散级数’，越往后越精彩。",
+                            "按照这个逻辑，明天太阳可能从西边升起，您觉得呢？"
+                        ],
+                        medium: [
+                            "您的观点在逻辑上存在跳跃，就像没有桥墩的桥梁。",
+                            "您的论证中隐含了一个未经证明的前提，这在逻辑学中称为‘丐题’。",
+                            "如果您的理论成立，那么我们需要重新定义基本的因果关系。"
+                        ],
+                        strong: [
+                            "您的言论完全违背了矛盾律，这是逻辑体系的基石。",
+                            "您的论证存在致命的逻辑漏洞，就像一座没有地基的大厦。",
+                            "按照您的逻辑，任何荒谬的结论都可以被证明，这显然是不合理的。"
+                        ]
+                    },
+                    sarcastic: {
+                        light: [
+                            "您的逻辑真是无懈可击，就像一个完美的圆，找不到起点也找不到终点。",
+                            "您的论证过程就像一场精彩的魔术表演，让人眼花缭乱却不知所云。",
+                            "按照您的说法，黑的可以变成白的，错的可以变成对的，真是神奇。"
+                        ],
+                        medium: [
+                            "您的逻辑跳跃能力，堪比奥运冠军的跨栏水平。",
+                            "您的论证就像一团乱麻，越理越乱，让人头疼。",
+                            "如果您的理论成立，那么所有的科学定律都需要重写。"
+                        ],
+                        strong: [
+                            "您的逻辑混乱程度，已经突破了人类认知的极限。",
+                            "您的论证就像一个无底洞，任何理性的思考都会被吞噬。",
+                            "按照您的说法，我们可以在同一时间处于两个不同的地方，这显然是荒谬的。"
+                        ]
+                    },
+                    polite: {
+                        light: [
+                            "您的观点很有启发性，但在逻辑上可能需要进一步推敲。",
+                            "您的论证过程很有趣，但其中的某些环节可能需要更多的证据支持。",
+                            "我理解您的立场，但从逻辑的角度来看，这个结论可能不够严谨。"
+                        ],
+                        medium: [
+                            "您的言论在逻辑上存在一些问题，可能需要重新审视。",
+                            "您的论证中存在一个关键的逻辑漏洞，这可能影响整个结论的可靠性。",
+                            "从逻辑的角度来看，您的观点可能需要更多的前提条件才能成立。"
+                        ],
+                        strong: [
+                            "您的言论严重违背了基本的逻辑规则，这使得您的观点难以被接受。",
+                            "您的论证存在根本性的逻辑错误，这使得整个论述失去了说服力。",
+                            "如果您坚持这样的逻辑，那么我们之间的讨论将无法继续下去。"
+                        ]
+                    },
+                    wise: {
+                        light: [
+                            "逻辑的力量在于严谨，而您的观点在这方面还有提升的空间。",
+                            "一个好的论证，不仅需要合理的前提，还需要严密的推理过程。",
+                            "真正的智慧，是能够用逻辑的工具来剖析复杂的问题。"
+                        ],
+                        medium: [
+                            "您的逻辑错误，就像一颗隐藏在机器中的故障零件，可能导致整个系统的崩溃。",
+                            "在逻辑的法庭上，任何漏洞都会被放大，您的论证需要更加严密。",
+                            "理性的思考需要遵循逻辑的法则，就像船只需要遵循航线一样。"
+                        ],
+                        strong: [
+                            "忽视逻辑的力量，就像在沙滩上建造城堡，无论多么华丽，终将被海浪冲垮。",
+                            "您的逻辑混乱，反映了您思维的无序，这需要通过学习和训练来改善。",
+                            "一个不尊重逻辑的人，就像一个没有指南针的航海者，终将迷失方向。"
+                        ]
+                    }
+                },
+                poetic: {
+                    humorous: {
+                        light: [
+                            "君之妙语如春风拂面，恰似那黄鹂鸣翠柳，婉转悠扬。",
+                            "阁下高论似繁星点缀夜空，闪耀着独特的光芒。",
+                            "这般奇思若化作诗篇，定能流传千古，成为佳话。"
+                        ],
+                        medium: [
+                            "君之言论如夏日暴雨，来得快去得也快，只留一片狼藉。",
+                            "阁下高见似秋日落叶，虽美却已凋零，徒增伤感。",
+                            "这般说法若谱成曲调，定是一曲荒诞不经的闹剧。"
+                        ],
+                        strong: [
+                            "君之言语如寒冬冰霜，刺骨冰冷，令人心寒。",
+                            "阁下高论似暗夜鬼火，阴森恐怖，令人胆寒。",
+                            "这般言论若成文章，定是一篇臭气熏天的秽文。"
+                        ]
+                    },
+                    sarcastic: {
+                        light: [
+                            "君之妙语如陈年美酒，越品越觉寡淡无味。",
+                            "阁下高论似华丽外衣，看似光鲜实则内里空空。",
+                            "这般奇思若作诗词，定是无病呻吟之作。"
+                        ],
+                        medium: [
+                            "君之言论如夏日蝉鸣，聒噪难耐，令人心烦。",
+                            "阁下高见似秋日枯枝，毫无生机，徒增凄凉。",
+                            "这般说法若成曲调，定是一曲嘈杂刺耳的噪音。"
+                        ],
+                        strong: [
+                            "君之言语如寒冬冷风，凛冽刺骨，令人厌恶。",
+                            "阁下高论似暗夜毒雾，毒性十足，令人作呕。",
+                            "这般言论若成文章，定是一篇颠倒黑白的邪说。"
+                        ]
+                    },
+                    polite: {
+                        light: [
+                            "君之言论如春日细雨，滋润心田，却也润物无声。",
+                            "阁下高论似秋日明月，皎洁明亮，却也清冷孤寂。",
+                            "这般说法若成诗篇，定是一首淡雅清幽的小诗。"
+                        ],
+                        medium: [
+                            "君之言论如夏日惊雷，震耳欲聋，却也引人深思。",
+                            "阁下高见似秋日枫叶，色彩斑斓，却也转瞬即逝。",
+                            "这般说法若成曲调，定是一曲激昂澎湃的交响乐。"
+                        ],
+                        strong: [
+                            "君之言语如寒冬暴雪，铺天盖地，却也净化心灵。",
+                            "阁下高论似暗夜灯塔，光芒万丈，却也刺痛双眼。",
+                            "这般言论若成文章，定是一篇振聋发聩的檄文。"
+                        ]
+                    },
+                    wise: {
+                        light: [
+                            "君之言论如清晨露珠，晶莹剔透，蕴含着智慧的光芒。",
+                            "阁下高论似深山古寺的钟声，悠扬深远，引人沉思。",
+                            "这般说法若成诗篇，定是一首富含哲理的箴言。"
+                        ],
+                        medium: [
+                            "君之言论如夏日清泉，清凉甘甜，却也能洗涤心灵。",
+                            "阁下高见似秋日硕果，沉甸甸的，满载着智慧。",
+                            "这般说法若成曲调，定是一曲深沉悠扬的古琴曲。"
+                        ],
+                        strong: [
+                            "君之言语如寒冬松柏，坚韧不拔，彰显着智慧的力量。",
+                            "阁下高论似暗夜星辰，永恒不变，指引着前行的方向。",
+                            "这般言论若成文章，定是一篇流传千古的经典。"
+                        ]
+                    }
+                },
+                modern: {
+                    humorous: {
+                        light: [
+                            "您这脑洞开得比宇宙还大，建议去写科幻片，肯定大火。",
+                            "您这逻辑，就像量子力学一样让人捉摸不透，佩服佩服。",
+                            "您这是准备去参加脱口秀吗？我提前给您预订前排座位。"
+                        ],
+                        medium: [
+                            "您这言论，就像过期的网红梗，已经不流行了。",
+                            "您这思维方式，简直就是90年代的互联网，该升级了。",
+                            "您这是从哪个平行宇宙来的？这里的逻辑不太适用哦。"
+                        ],
+                        strong: [
+                            "您这言论，就像恶意软件，不仅没用还会让人反感。",
+                            "您这思维，就像卡顿的电脑，完全跟不上时代的步伐。",
+                            "您这是准备用言语污染整个网络环境吗？请停止吧。"
+                        ]
+                    },
+                    sarcastic: {
+                        light: [
+                            "您这见解，真是‘独特’到让人忍不住想点赞。",
+                            "您这逻辑，就像抖音上的迷惑行为大赏，让人开眼界。",
+                            "您这是准备去当键盘侠吗？先练练逻辑吧。"
+                        ],
+                        medium: [
+                            "您这言论，就像朋友圈里的微商广告，毫无营养。",
+                            "您这思维，就像短视频里的无脑段子，毫无深度。",
+                            "您这是准备用言语垃圾填满整个网络空间吗？"
+                        ],
+                        strong: [
+                            "您这言论，就像网络诈骗，不仅虚假还很危险。",
+                            "您这思维，就像病毒式营销，让人恶心。",
+                            "您这是准备用言语暴力摧毁整个社交平台吗？"
+                        ]
+                    },
+                    polite: {
+                        light: [
+                            "您的观点很有创意，但可能需要更多的现实依据支持。",
+                            "您的想法很有趣，但在表达上或许可以更加委婉一些。",
+                            "我理解您的立场，但这个问题可能比我们想象的要复杂。"
+                        ],
+                        medium: [
+                            "您的言论可能会引起一些争议，建议您再斟酌一下。",
+                            "您的观点在逻辑上存在一些问题，希望您能重新审视。",
+                            "我们可以有不同的看法，但请保持理性和尊重。"
+                        ],
+                        strong: [
+                            "您的言论已经超出了讨论的范畴，请尊重他人和公共秩序。",
+                            "如果您继续这样说话，我们将不得不采取相应的措施。",
+                            "我们欢迎不同的声音，但不接受任何形式的攻击和侮辱。"
+                        ]
+                    },
+                    wise: {
+                        light: [
+                            "真正的智慧，不在于说得多，而在于说得有价值。",
+                            "在表达观点之前，不妨先听听别人的意见，这样会更全面。",
+                            "一个人的认知水平，往往体现在他如何表达不同的观点。"
+                        ],
+                        medium: [
+                            "言语是一把双刃剑，既能建立桥梁，也能筑起高墙。",
+                            "在网络时代，我们更应该学会用理性的语言进行交流。",
+                            "真正的强者，是那些能够控制自己情绪和言语的人。"
+                        ],
+                        strong: [
+                            "随意宣泄情绪的言论，就像乱扔的垃圾，只会污染公共环境。",
+                            "如果每个人都只考虑自己的感受，这个世界将变得无比冷漠。",
+                            "尊重他人的言论自由，并不意味着可以肆意妄为。"
+                        ]
+                    }
+                }
+            };
+            
+            try {
+                // 将所有输入参数组合成一个字符串
+                const inputStr = `${insult}-${tone}-${style}-${intensity}-${sentiment}`;
+                // 计算哈希值
+                const hash = simpleHash(inputStr);
+                // 获取对应的回应列表
+                const responseList = templates[style][tone][intensity];
+                // 使用哈希值对回应列表长度取模，得到固定的索引
+                const index = hash % responseList.length;
+                // 返回固定的回应
+                return responseList[index];
+            } catch (error) {
+                console.error("生成回应时出错:", error);
+                // 默认返回一个通用的礼貌回应
+                return "我理解您可能有不同的看法，但请保持尊重和理性。";
+            }
+        }
+        
+        // 分析对方言论的情感倾向
+        function analyzeSentiment(text) {
+            // 这里是一个简单的实现，实际应用中可以替换为更复杂的NLP模型
+            const positiveWords = ["好", "棒", "优秀", "棒", "强", "厉害", "牛", "赞", "好极了", "完美"];
+            const negativeWords = ["差", "烂", "坏", "糟糕", "失败", "无能", "蠢", "笨", "垃圾", "讨厌", "讨厌", "反感"];
+            
+            let positiveCount = 0;
+            let negativeCount = 0;
+            
+            for (const word of positiveWords) {
+                if (text.includes(word)) {
+                    positiveCount++;
+                }
+            }
+            
+            for (const word of negativeWords) {
+                if (text.includes(word)) {
+                    negativeCount++;
+                }
+            }
+            
+            if (negativeCount > 0) {
+                return "negative";
+            } else if (positiveCount > 0) {
+                return "positive";
+            } else {
+                return "neutral";
+            }
+        }
+        
+        // 检查紧急情况的功能
+        function checkCriticalSituation(insult) {
+            // 检查是否包含直接的人身攻击
+            const criticalWords = ['蠢货', '白痴', '笨蛋', '废物', '傻瓜', '疯子', '猪', '狗'];
+            for (const word of criticalWords) {
+                if (insult.includes(word)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        // 移除所有 HTML 标签
+        function stripHtmlTags(text) {
+            return text.replace(/<[^>]+>/g, '');
+        }
+        
+        // 页面加载时初始化内容
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContentSection('witty');
+        });
+    </script>
+</body>
+</html>
